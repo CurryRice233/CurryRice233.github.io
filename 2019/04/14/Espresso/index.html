@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      Espresso 等待外部资源 | CurryRice233 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="CurryRice233">
+    
+    
+
+    <meta name="description" content="Espresso 是一个 Google 官方提供的 Android 应用 UI 自动化测试框架。Google 希望，当 Android 的开发者利用 Espresso 写完测试用例后，能一边看着测试用例自动执行，一边享受一杯香醇的 Espresso (浓咖啡)。 在使用 Espresso 的时候，很多场景下我们需要暂停 Espresso 进程，等待应用获取一个外部资源。可能是一张图片，一段文字。我">
+<meta name="keywords" content="Espresso">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Espresso 等待外部资源 | CurryRice233">
+<meta property="og:url" content="https://curryrice233.github.io/2019/04/14/Espresso/index.html">
+<meta property="og:site_name" content="CurryRice233">
+<meta property="og:description" content="Espresso 是一个 Google 官方提供的 Android 应用 UI 自动化测试框架。Google 希望，当 Android 的开发者利用 Espresso 写完测试用例后，能一边看着测试用例自动执行，一边享受一杯香醇的 Espresso (浓咖啡)。 在使用 Espresso 的时候，很多场景下我们需要暂停 Espresso 进程，等待应用获取一个外部资源。可能是一张图片，一段文字。我">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-04-14T18:16:55.367Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Espresso 等待外部资源 | CurryRice233">
+<meta name="twitter:description" content="Espresso 是一个 Google 官方提供的 Android 应用 UI 自动化测试框架。Google 希望，当 Android 的开发者利用 Espresso 写完测试用例后，能一边看着测试用例自动执行，一边享受一杯香醇的 Espresso (浓咖啡)。 在使用 Espresso 的时候，很多场景下我们需要暂停 Espresso 进程，等待应用获取一个外部资源。可能是一张图片，一段文字。我">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">CurryRice233</a></h1>
+        <hr class="panel-cover__divider">
+
+        
+        <p class="panel-cover__description">
+          仰天大笑出门去，我辈岂是蓬蒿人。
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title class>关于</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/CurryRice233" title="CurryRice233 on GitHub">
+          <i class="icon icon-social-github"></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    
+    <!--
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+	-->
+
+    
+
+
+
+  </ul>
+</nav>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">Espresso 等待外部资源</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-04-14" class="post-meta__date date">2019-04-14</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Espresso/">Espresso</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><a href="https://developer.android.com/training/testing/espresso" target="_blank" rel="noopener">Espresso</a> 是一个 Google 官方提供的 Android 应用 UI 自动化测试框架。Google 希望，当 Android 的开发者利用 Espresso 写完测试用例后，能一边看着测试用例自动执行，一边享受一杯香醇的 Espresso (浓咖啡)。</p>
+<p>在使用 Espresso 的时候，很多场景下我们需要暂停 Espresso 进程，等待应用获取一个外部资源。可能是一张图片，一段文字。我的情况是应用需要在 <a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a> 获取一个对象。需要在 Espresso 进行到一半的时候暂停它，然后应用发送请求，等待 Firebase 响应，再继续 Espresso 测试。<br>Espresso 提供了一个 <code>IdlingResource</code> 的接口来解决上面的问题。我们来实现它:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleIdlingResource</span> <span class="keyword">implements</span> <span class="title">IdlingResource</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Nullable</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">volatile</span> ResourceCallback mCallback;</span><br><span class="line">	<span class="comment">// Idleness is controlled with this boolean.</span></span><br><span class="line">	<span class="keyword">private</span> AtomicBoolean mIsIdleNow = <span class="keyword">new</span> AtomicBoolean(<span class="keyword">true</span>);</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.getClass().getName();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isIdleNow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> mIsIdleNow.get();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerIdleTransitionCallback</span><span class="params">(ResourceCallback callback)</span> </span>&#123;</span><br><span class="line">		mCallback = callback;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Sets the new idle state, if isIdleNow is true, it pings the &#123;<span class="doctag">@link</span> ResourceCallback&#125;.</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> isIdleNow false if there are pending operations, true if idle.</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIdleState</span><span class="params">(<span class="keyword">boolean</span> isIdleNow)</span> </span>&#123;</span><br><span class="line">		mIsIdleNow.set(isIdleNow);</span><br><span class="line">		<span class="keyword">if</span> (isIdleNow &amp;&amp; mCallback != <span class="keyword">null</span>) &#123;</span><br><span class="line">			mCallback.onTransitionToIdle();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在 Activity 里声明：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> SimpleIdlingResource mIdlingResource;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@VisibleForTesting</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> SimpleIdlingResource <span class="title">getIdlingResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(mIdlingResource == <span class="keyword">null</span>)</span><br><span class="line">			mIdlingResource = <span class="keyword">new</span> SimpleIdlingResource();</span><br><span class="line">		<span class="keyword">return</span> mIdlingResource;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>之后在你的代码准备获取外部资源前加入<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(MainActivity.mIdlingResource!=<span class="keyword">null</span>)</span><br><span class="line">	MainActivity.mIdlingResource.setIdleState(<span class="keyword">false</span>);</span><br></pre></td></tr></table></figure></p>
+<p>来暂停 Espresso，等获取到了外部资源之后再 <code>setIdleState(true)</code> Espresso 就会继续执行了。</p>
+<p>最后一步就是在 EspressoTest 里注册了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(AndroidJUnit4.class)</span><br><span class="line"><span class="meta">@LargeTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EspressoTest</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> IdlingResource idlingResource;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Rule</span></span><br><span class="line">	<span class="keyword">public</span> ActivityTestRule&lt;MainActivity&gt; mActivityRule = <span class="keyword">new</span> ActivityTestRule&lt;&gt;(MainActivity.class);</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerActivity</span><span class="params">()</span></span>&#123;</span><br><span class="line">		idlingResource = mActivityRule.getActivity().getIdlingResource();</span><br><span class="line">		IdlingRegistry.getInstance().register(idlingResource);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@After</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unregisterActivity</span><span class="params">()</span></span>&#123;</span><br><span class="line">		IdlingRegistry.getInstance().unregister(idlingResource);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="comment">// your test</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+  </section>
+
+  <section class="post-comments">
+
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
+
+
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/33.model.json"},"display":{"superSample":2,"width":250,"height":300,"position":"left","hOffset":-20,"vOffset":-35},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"dialog":{"enable":true,"hitokoto":false},"log":false});</script></body>
+</html>
