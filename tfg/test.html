@@ -16,7 +16,7 @@
 	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
 		integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
 		crossorigin=""></script>
-	<script src='http://hu.elam.es/hu_e/leaflet-heat.js'></script>
+	<script src='leaflet-heat.js'></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 
@@ -36,12 +36,12 @@
 			id: 'mapbox/streets-v11'
 		}).addTo(mymap);
 
-		/*L.marker([40.4213239, -3.7066279]).addTo(mymap);*/
+		L.marker([40.4213239, -3.7066279]).addTo(mymap);
 
 		$(document).ready(function () {
 			$.ajax({
 				type: "GET",
-				url: "2019-11-17.csv",
+				url: "tfg/2019-11-17.csv",
 				dataType: "text",
 				success: function (data) { processData(data); }
 			});
