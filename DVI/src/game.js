@@ -4,7 +4,7 @@ export default class Game extends Phaser.Scene {
     super({ key: 'main' });
   }
   preload() {
-    this.load.image("logo", "../assets/favicon.png")
+    this.load.image("logo", "/assets/favicon.png")
   }
 
   create() {
