@@ -1,0 +1,1 @@
+la descripción de los assets y las decisiones de dirección artística
