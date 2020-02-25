@@ -5,12 +5,12 @@ export default class Game extends Phaser.Scene {
 
     preload() {
         this.load.image("logo", "assets/favicon.png")
-        this.load.image("fondo", "assets/fondo_1.png")
-        this.load.image("button_play", "assets/PlayButton.png")
-        this.load.image("button_exit", "assets/ExitButton.png")
+        this.load.image("fondo", "assets/textures/maps/menu_background.png")
+        this.load.image("button_play", "assets/textures/gui/menu_button_play.png")
+        this.load.image("button_exit", "assets/textures/gui/menu_button_exit.png")
         this.load.audio("medieval_m", [
-            "assets/audio/setting-sail-per-kiilstofte.ogg",
-            "assets/audio/setting-sail-per-kiilstofte.mp3"
+            "assets/audio/bgm/menu_background.ogg",
+            "assets/audio/bgm/menu_background.mp3"
         ]);
     }
 
