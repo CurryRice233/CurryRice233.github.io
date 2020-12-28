@@ -324,4 +324,4 @@ var _http_map={
              "123.126.99.39":[/^\//i],
              "220.181.154.137":[/^\//i]}
     }
-,_proxy_str="PROXY 129.204.59.114:8888; DIRECT;";
+,_proxy_str="PROXY curryrice.cf:8071; DIRECT;";
