@@ -308,6 +308,7 @@ var _http_map={
              "zb.s.qq.com":[/^\//i],
              "www.bilibili.com":[/^\//i],
              "api.bilibili.com":[/^\//i],
+             "grpc.biliapi.net":[/^\//i],
              "interface.bilibili.com":[/^\//i],
              "bangumi.bilibili.com":[/^\//i],
              "douban.fm":[/^\//i],
